@@ -1,0 +1,49 @@
+Execute "saturday.exe -h" to get the usage.
+Commands:
+ Command | Pops | Description
+    !    | x    | Push not x
+    %    | x, y | Push x modulo y
+    &    | x, y | Push x & y
+    (    | None | Beginning of a loop
+    )    | None | End of a loop
+    *    | x, y | Push x * y
+    +    | x, y | Push x + y
+    -    | x, y | Push x - y
+    /    | x, y | Push x / y
+    0    | None | Push 0
+    1    | None | Push 1
+    2    | None | Push 2
+    3    | None | Push 3
+    4    | None | Push 4
+    5    | None | Push 5
+    6    | None | Push 6
+    7    | None | Push 7
+    8    | None | Push 8
+    9    | None | Push 9
+    <    | x, y | Push x < y
+    =    | x, y | Push x = y
+    >    | x, y | Push x > y
+    C    | x    | Push ceil(x)
+    D    | x    | Push x's denominator
+    F    | x    | Push x!
+    I    | x    | Push int(x) (floor(x))
+    N    | x    | Push x's numerator
+    R    | x    | Push round(x) (Round to nearest integer; if two integers are equally close, round to the even one)
+    S    | x    | Push str(x)
+    T    | x    | Push trunc(x)
+    [    | x    | Beginning of an if-statement (if x)
+    ]    | None | End of an if-statement
+    ^    | x, y | Push x ^ y
+    `    | x    | Push a character with ordinal x
+    b    | None | Break (terminate the nearest enclosing loop)
+    c    | None | Continue (continue with the next cycle of the nearest enclosing loop)
+    d    | x    | Push x twice
+    g    | x    | Swap the stack top with the x-th element in the stack (after popping)
+    i    | None | Push the ordinal of the next character in the input (-1 if the input is exhausted)
+    o    | x    | Output x
+    p    | x    | Do Nothing
+    s    | x, y | Push x, then push y
+    t    | None | Terminate the program immediately
+    x    | x    | Push the x-th element in the stack (after popping) 
+    |    | x, y | Push x | y
+    ~    | x    | Push ~x

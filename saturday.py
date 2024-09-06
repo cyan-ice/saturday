@@ -3,14 +3,16 @@ __version__ = '0.0.1'
 import os
 
 from argparse import ArgumentParser, FileType
-from sys import stderr, stdin
+from sys import stderr, stdin, stdout
 from operator import mul, add, sub, mod, and_, or_, xor, not_, inv
 from fractions import Fraction
 from math import factorial, ceil, trunc
 from itertools import chain, tee
 from re import sub as rsub
+from io import StringIO
 
-parser = ArgumentParser(description=f'Saturday {__version__}, the official saturday interpreter')
+parser = ArgumentParser(
+    description=f'Saturday {__version__}, the official saturday interpreter')
 parser.add_argument('-d', '--debug', action='store_true', help='debug mode')
 parser.add_argument('file', type=FileType(), help='path to source file')
 args = parser.parse_args()
@@ -104,16 +106,23 @@ def if_skip():
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
+dbgout = StringIO()
+
 if args.debug:
     while i < len(code):
         ch = code[i]
-        
-        if not ch.isspace():  # Only show relevant commands and their stack states
+
+        if not ch.isspace(
+        ):  # Only show relevant commands and their stack states
             clear_screen()
             print(f'Command: {ch}')
             print(f'Stack: {st}')
-            input("Press Enter to continue...")  # Wait for user input before proceeding
-        
+            print('Output:')
+            print(dbgout.getvalue())
+            input("Press Enter to continue..."
+                  )  # Wait for user input before proceeding
+
         match ch:
             case '!':
                 st.append(operation(lambda x: int(not_(x)), *stack_pop()))
@@ -132,7 +141,9 @@ if args.debug:
             case '-':
                 st.append(operation(sub, *stack_pop(2)))
             case '/':
-                st.append(operation(lambda a, b: a * (Fraction(1) / b), *stack_pop(2)))
+                st.append(
+                    operation(lambda a, b: a * (Fraction(1) / b),
+                              *stack_pop(2)))
             case _ if ch.isdigit():
                 st.append(int(ch))
             case '<':
@@ -180,7 +191,10 @@ if args.debug:
                 c = stdin.read(1)
                 st.append(ord(c) if c else -1)
             case 'o':
-                operation(print, *stack_pop(), end='')
+                operation(print,
+                          *stack_pop(),
+                          end='',
+                          file=dbgout if args.debug else stdout)
             case 'p':
                 next(stack_pop())
             case 's':
@@ -200,8 +214,7 @@ if args.debug:
                 pass
             case _:
                 raise_exception(f'Invalid command {repr(ch)}')
-        
+
         i += 1
 
-        if args.debug and not ch.isspace():
-            print(st)
+dbgout.close()

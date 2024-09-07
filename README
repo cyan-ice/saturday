@@ -28,6 +28,7 @@ Commands:
     F    | x    | Push x!
     I    | x    | Push int(x) (floor(x))
     N    | x    | Push x's numerator
+    O    | x    | Push the ordinal of x
     R    | x    | Push round(x) (Round to nearest integer; if two integers are equally close, round to the even one)
     S    | x    | Push str(x)
     T    | x    | Push trunc(x)

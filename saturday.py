@@ -162,6 +162,8 @@ if args.debug:
                 st.append(operation(int, *stack_pop()))
             case 'N':
                 st.append(operation(lambda x: x.numerator, *stack_pop()))
+            case 'O':
+                st.append(operation(ord, *stack_pop()))
             case 'R':
                 st.append(operation(round, *stack_pop()))
             case 'S':

@@ -53,8 +53,8 @@ This will push `1` and `2` onto the stack, and then the `+` operator will pop th
 
 ### Control Structures
 
-    *Loops*: Loops are enclosed in `(` and `)` brackets. You can use loop control commands like `b` (break) and `c` (continue).
-    *Conditions*: Conditional checks are done with `[` and `]` brackets, and logical comparisons like `<`, `>`, `=`.
+- *Loops*: Loops are enclosed in `(` and `)` brackets. You can use loop control commands like `b` (break) and `c` (continue).
+- *Conditions*: Conditional checks are done with `[` and `]` brackets, and logical comparisons like `<`, `>`, `=`.
 
 ## Contributing
 

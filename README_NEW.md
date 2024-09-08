@@ -110,7 +110,7 @@ d`o      # 'l'
 | s       | x, y  | Push x, then push y                                                       |
 | t       | None  | Terminate the program immediately                                         |
 | x       | x     | Push the x-th element in the stack (after popping)                        |
-| |       | x, y  | Push x | y                                                                |
+| \|       | x, y  | Push x | y                                                                |
 | ~       | x     | Push ~x                                                                   |
 
 

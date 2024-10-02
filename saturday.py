@@ -1,7 +1,7 @@
 __version__ = '0.0.1'
 
 import os
-
+import subprocess
 from argparse import ArgumentParser, FileType
 from sys import stderr, stdin, stdout
 from operator import mul, add, sub, mod, and_, or_, xor, not_, inv
@@ -11,11 +11,23 @@ from itertools import chain, tee
 from re import sub as rsub
 from io import StringIO
 
-parser = ArgumentParser(
-    description=f'Saturday {__version__}, the official saturday interpreter')
+parser = ArgumentParser(description='Saturday interpreter')
 parser.add_argument('-d', '--debug', action='store_true', help='debug mode')
+parser.add_argument('-e', '--executable', action='store_true', help='create executable for the script')
 parser.add_argument('file', type=FileType(), help='path to source file')
 args = parser.parse_args()
+
+if args.executable:
+    if os.name == 'nt':
+        executable_name = 'script.exe'
+    else:
+        executable_name = 'script'
+
+    try:
+        subprocess.run(['pyinstaller', '--onefile', args.file.name], check=True)
+        print(f'Executable created: {executable_name}')
+    except subprocess.CalledProcessError as e:
+        print(f'Error creating executable: {e}')
 
 code: str = rsub(r'#.*[\n]?', '', args.file.read())
 
